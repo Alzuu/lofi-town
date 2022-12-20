@@ -1,16 +1,16 @@
 <script setup>
-import { onMounted, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 import Controls from './Controls.vue'
 
-const state = $ref({
+const state = ref({
   player: null,
   videoTitle: 'loading...',
 })
 
 function initYoutube() {
   console.log('initYoutube')
-  state.player = new YT.Player('player', {
+  state.value.player = new YT.Player('player', {
     playerVars: {
       autoplay: 0,
       playsInline: 1,
@@ -27,7 +27,7 @@ function initYoutube() {
 
 function onPlayerReady(event) {
   console.log('player ready')
-  state.player.loadPlaylist({
+  state.value.player.loadPlaylist({
     list: 'PL6ithAzFBH9bfmzl_2rjN_iZ2GBxoQNsU',
     listType: 'playlist',
   })
@@ -36,12 +36,12 @@ function onPlayerReady(event) {
 
 function onPlayerStateChange(event) {
   console.log('player state changed')
-  state.player = event.target
-  state.videoTitle = event.target.videoTitle
+  state.value.player = event.target
+  state.value.videoTitle = event.target.videoTitle
 }
 
 const videoTitle = computed(() => {
-  return state.videoTitle
+  return state.value.videoTitle
 })
 
 onMounted(() => {
@@ -61,11 +61,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="yt-wrapper">
+  <section id="controls-wrapper">
+    <h1>{{ videoTitle }}</h1>
+    <Controls :player="state.player"></Controls>
+  </section>
+  <div id="yt-wrapper" aria-hidden="true">
     <div id="player"></div>
   </div>
-  <h1>{{ videoTitle }}</h1>
-  <Controls :player="state.player"></Controls>
 </template>
 
 <style scoped>
@@ -75,5 +77,18 @@ onMounted(() => {
   left: 100%;
   pointer-events: none;
   user-select: none;
+}
+
+#controls-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  max-width: 65vw;
+  font-weight: 500;
 }
 </style>
