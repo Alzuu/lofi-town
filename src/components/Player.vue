@@ -62,8 +62,8 @@ onMounted(() => {
 
 <template>
   <section id="controls-wrapper">
-    <h1>{{ videoTitle }}</h1>
-    <Controls :player="state.player"></Controls>
+    <!-- <h1>{{ videoTitle }}</h1> -->
+    <Controls :player="state.player" :title="videoTitle"></Controls>
   </section>
   <div id="yt-wrapper" aria-hidden="true">
     <div id="player"></div>
@@ -82,7 +82,7 @@ onMounted(() => {
 #controls-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 }
 
