@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, inject } from 'vue'
 
 import { Icon } from '@iconify/vue'
 
@@ -7,6 +7,8 @@ const props = defineProps(['player', 'title'])
 
 const volume = ref(100)
 const isPlaying = ref(false)
+
+const { changeCurrentGif } = inject('gif')
 
 function changePlayback() {
   if (isPlaying.value) {
@@ -23,12 +25,14 @@ function previous() {
   console.log('previous video')
   props.player.previousVideo()
   isPlaying.value = true
+  changeCurrentGif()
 }
 
 function next() {
   console.log('next video')
   props.player.nextVideo()
   isPlaying.value = true
+  changeCurrentGif()
 }
 
 function changeVolume(currentVolume) {
