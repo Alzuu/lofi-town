@@ -9,7 +9,6 @@ const state = ref({
 })
 
 function initYoutube() {
-  console.log('initYoutube')
   state.value.player = new YT.Player('player', {
     playerVars: {
       autoplay: 0,
@@ -26,7 +25,6 @@ function initYoutube() {
 }
 
 function onPlayerReady(event) {
-  console.log('player ready')
   state.value.player.loadPlaylist({
     list: 'PL6ithAzFBH9bfmzl_2rjN_iZ2GBxoQNsU',
     listType: 'playlist',
@@ -35,7 +33,6 @@ function onPlayerReady(event) {
 }
 
 function onPlayerStateChange(event) {
-  console.log('player state changed')
   state.value.player = event.target
   state.value.videoTitle = event.target.videoTitle
 }
@@ -45,7 +42,6 @@ const videoTitle = computed(() => {
 })
 
 onMounted(() => {
-  console.log('onMounted')
   // This code loads the IFrame Player API code asynchronously.
   let tag = document.createElement('script')
 
@@ -54,7 +50,6 @@ onMounted(() => {
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
 
   window.onYouTubeIframeAPIReady = () => {
-    console.log('onYouTubeIframeAPIReady')
     initYoutube()
   }
 })

@@ -12,24 +12,20 @@ const { changeCurrentGif } = inject('gif')
 
 function changePlayback() {
   if (isPlaying.value) {
-    console.log('pause')
     props.player.pauseVideo()
   } else {
-    console.log('play')
     props.player.playVideo()
   }
   isPlaying.value = !isPlaying.value
 }
 
 function previous() {
-  console.log('previous video')
   props.player.previousVideo()
   isPlaying.value = true
   changeCurrentGif()
 }
 
 function next() {
-  console.log('next video')
   props.player.nextVideo()
   isPlaying.value = true
   changeCurrentGif()
@@ -37,7 +33,6 @@ function next() {
 
 function changeVolume(currentVolume) {
   if (currentVolume <= 100 && currentVolume >= 0) {
-    console.log('change volume to ' + currentVolume)
     props.player.setVolume(currentVolume)
     volume.value = currentVolume
   }
@@ -46,11 +41,9 @@ function changeVolume(currentVolume) {
 function toggleMuted() {
   const playerVolume = props.player.getVolume()
   if (volume.value == 0) {
-    console.log('unmuted')
     props.player.unMute()
     volume.value = playerVolume > 0 ? playerVolume : 10
   } else {
-    console.log('muted')
     props.player.mute()
     volume.value = 0
   }
