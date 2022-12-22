@@ -149,7 +149,7 @@ button {
 
 .iconify {
   font-size: 1.5rem;
-  color: gray;
+  color: #9f9f9f;
 }
 
 .iconify:hover {
@@ -174,6 +174,10 @@ button {
   display: grid;
   grid-template-rows: 1fr 1fr;
   width: 100%;
+  background-color: #252525;
+  border: 2px solid #252525;
+  border-radius: 1rem;
+  padding: 1rem;
 }
 
 .controls {
@@ -207,7 +211,7 @@ input[type='range'] {
   -webkit-appearance: none;
   overflow: hidden;
   height: 1.2rem;
-  width: 10rem;
+  width: 100%;
   cursor: pointer;
   border-radius: 0; /* iOS */
   border: 2px solid #fff;
@@ -235,5 +239,23 @@ input[type='range'] {
   border: none;
   box-shadow: -100px 0 0 100px white;
   box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .controls-wrapper {
+    width: 60%;
+  }
+}
+
+@media (min-width: 768px) {
+  input[type='range'] {
+    width: 10rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .controls-wrapper {
+    width: 45%;
+  }
 }
 </style>

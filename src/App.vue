@@ -75,7 +75,7 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 2.5rem;
+  padding: 0.75rem;
 }
 
 #background {
@@ -93,5 +93,22 @@ header {
   display: grid;
   grid-template-columns: 1fr auto;
   width: 100%;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  #container {
+    padding: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  #container {
+    padding: 2.5rem;
+  }
+}
+@media (min-width: 1536px) {
+  #container {
+    padding: 3rem;
+  }
 }
 </style>
