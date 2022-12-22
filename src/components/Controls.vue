@@ -88,6 +88,11 @@ onMounted(() => {
       toggleMuted()
     }
   })
+
+  // Removes focus after any element is clicked
+  window.addEventListener('mouseup', (event) => {
+    event.target.blur()
+  })
 })
 </script>
 
